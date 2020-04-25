@@ -53,9 +53,16 @@ const ProductBox = ({ product }) => {
   )
 }
 
-const ProductPage = ({ products }) => {
+const ProductPage = ({ query, products }) => {
   const classes = useStyles()
   const { data, client } = useQuery(querySortingFilter)
+  const result = useQuery(query)
+
+  if (result.loading) {
+    return (
+      <div>Loading</div>
+    )
+  }
   
   const handleChange = event => {
     client.writeQuery({
@@ -64,7 +71,7 @@ const ProductPage = ({ products }) => {
     })
   }
 
-  const sortedProducts = sortProducts(products, data.sortingFilter)
+  const sortedProducts = sortProducts(result.data[products], data.sortingFilter)
 
   return (
     <Container>
