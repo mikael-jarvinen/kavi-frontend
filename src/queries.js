@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const getProduct = gql`
-query getProduct($idToSearch: String!) {
+query getProduct($idToSearch: ID!) {
   product(id: $idToSearch) {
     id
     name
@@ -137,5 +137,11 @@ query {
 export const querySortingFilter = gql`
   {
     sortingFilter @client
+  }
+`
+
+export const queryModalOpen = gql`
+  {
+    modalOpen @client
   }
 `

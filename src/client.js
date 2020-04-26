@@ -3,7 +3,7 @@ import {
   HttpLink,
   InMemoryCache,
 } from '@apollo/client'
-import { querySortingFilter } from './queries'
+import { querySortingFilter, queryModalOpen } from './queries'
 
 const uri = process.env.APOLLO_URI || 'http://localhost:5000'
 
@@ -17,6 +17,11 @@ const client = new ApolloClient({
 client.writeQuery({
   query: querySortingFilter,
   data: { sortingFilter: 'Name' }
+})
+
+client.writeQuery({
+  query: queryModalOpen,
+  data: { modalOpen: false }
 })
 
 export default client
