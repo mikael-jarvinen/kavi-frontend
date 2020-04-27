@@ -4,54 +4,79 @@ import {
   DialogTitle,
   Typography
 } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import { Cancel as CancelIcon } from '@material-ui/icons'
 import { useQuery } from '@apollo/client'
-import { queryModalOpen, getProduct } from '../queries'
+import { getProduct } from '../queries'
 import ProductComment from './ProductComment'
+import CommentForm from './CommentForm'
 
-const ProductDialogContent = () => {
-  const { data, client } = useQuery(queryModalOpen)
+const useStyles = makeStyles(() => ({
+  commentDiv: {
+    border: '1px solid black',
+    borderRadius: 3,
+    height: '20vh',
+    minWidth: '15vw',
+    overflowY: 'auto',
+    marginTop: 10
+  },
+}))
+
+const ProductDialogContent = ({ id, close }) => {
+  const classes = useStyles()
   const result = useQuery(getProduct, {
     variables: {
-      idToSearch: data.modalOpen
+      idToSearch: id
     }
   })
 
   if (result.loading) {
-    return (
-      <div>
-        <DialogTitle>Loading</DialogTitle>
-      </div>
-    )
+    return <></>
   }
 
   const product = result.data.product
 
   return (
     <div>
-      <DialogTitle 
-        onClick={() => window.open(product.url)}
-        style={{ cursor: 'pointer' }}
-      >
-        {product.name}
-      </DialogTitle>
       <Box display='flex' flexDirection='row'>
-        <img 
-          src={product.img} 
-          alt='product'
+        <DialogTitle 
           onClick={() => window.open(product.url)}
           style={{ cursor: 'pointer' }}
-        />
+        >
+          {product.name}
+        </DialogTitle>
+        <Box 
+          flexGrow={1}
+          display='flex'
+          justifyContent='flex-end' 
+          padding={2}
+        >
+          <CancelIcon onClick={close} style={{ cursor: 'pointer' }}/>
+        </Box>
+      </Box>
+      <Box display='flex' flexDirection='row'>
+        <Box>
+          <img 
+            src={product.img} 
+            alt='product'
+            onClick={() => window.open(product.url)}
+            style={{ cursor: 'pointer' }}
+          />
+        </Box>
         <div style={{ padding: 30 }}>
           <Typography>Hinta {product.price}€</Typography>
           <Typography>Postit {product.postage}€</Typography>
           <Typography>Tilavuus {product.volume}L</Typography>
           <Typography>Voltit {product.vol}%</Typography>
           <Typography>KAVI {product.KAVI}</Typography>
-          {product.comments.map(comment => 
-            <ProductComment key={product.id} comment={comment} />
-          )}
+          <div className={classes.commentDiv}>
+            {product.comments.map(comment => 
+              <ProductComment key={comment.date} comment={comment} />
+            )}
+          </div>
         </div>
       </Box>
+      <CommentForm product={product}/>
     </div>
   )
 }

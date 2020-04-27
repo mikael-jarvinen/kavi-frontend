@@ -1,16 +1,16 @@
 import React from 'react'
+import { Route, useHistory }from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   GridListTile,
   GridListTileBar,
   GridList,
   Container,
-  Typography
+  Typography,
 } from '@material-ui/core'
-import { useQuery, useApolloClient } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { querySortingFilter } from '../queries'
 import { sortProducts } from '../utils'
-import { queryModalOpen } from '../queries'
 import ProductName from './ProductName'
 import SortSelect from './SortSelect'
 import ProductDialog from './ProductDialog'
@@ -35,16 +35,13 @@ const useStyles = makeStyles(() => ({
 }))
 
 const ProductBox = ({ product }) => {
-  const client = useApolloClient()
+  const history = useHistory()
   const classes = useStyles()
 
   return (
     <GridListTile className={classes.GridListTile}>
       <img 
-        onClick={() => client.writeQuery({
-          query: queryModalOpen,
-          data: { modalOpen: product.id }
-        })} 
+        onClick={() => history.push(`${history.location.pathname}/${product.id}`)} 
         src={product.img} 
         alt='product-image'
         style={{ cursor: 'pointer' }}
@@ -83,13 +80,15 @@ const ProductPage = ({ query, products }) => {
       <div className={classes.sortDiv}>
         <SortSelect />
       </div>
-      <ProductDialog />
       <GridList
         cellHeight={'auto'} 
         className={classes.Products}
       >
         {sortedProducts.map(p => <ProductBox key={p.id} product={p} />)}
       </GridList>
+      <Route path='/:category/:id'>
+        <ProductDialog />
+      </Route>
     </Container>
   )
 }

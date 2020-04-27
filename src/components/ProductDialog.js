@@ -1,27 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
 import {
   Dialog,
 } from '@material-ui/core'
-import { useQuery } from '@apollo/client'
-import { queryModalOpen } from '../queries'
 import ProductDialogContent from './ProductDialogContent'
 
 const ProductDialog = () => {
-  const modalOpen = useQuery(queryModalOpen)
+  const { id, category } = useParams()
+  const [productId, setProductId] = useState(id)
+  const history = useHistory()
+  
+  console.log(id)
 
-  if(modalOpen.loading) {
-    return <></>
+  const close = () => {
+    setProductId(null)
+    history.replace(`/${category}`)
   }
 
   return (
-    <Dialog
-      open={!!modalOpen.data.modalOpen} 
-      onClose={() => modalOpen.client.writeQuery({
-        query: queryModalOpen,
-        data: { modalOpen: undefined }
-      })}>
-      <ProductDialogContent />
-    </Dialog>
+    <div>
+      <Dialog
+        open={!!productId} 
+        onClose={close}>
+        <ProductDialogContent id={id} close={close} />
+      </Dialog>
+    </div>
+    
   )
 }
 

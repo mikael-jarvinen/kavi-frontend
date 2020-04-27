@@ -1,5 +1,26 @@
 import { gql } from '@apollo/client'
 
+export const addComment = gql`
+mutation addComment($id: ID!, $author: String!, $message: String!) {
+  addComment(id: $id, author: $author, message: $message) {
+    id
+    name
+    price
+    postage
+    volume
+    vol
+    KAVI
+    url
+    img
+    comments {
+      message
+      author
+      date
+    }
+  }
+}
+`
+
 export const getProduct = gql`
 query getProduct($idToSearch: ID!) {
   product(id: $idToSearch) {
