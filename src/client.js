@@ -4,8 +4,13 @@ import {
   InMemoryCache,
 } from '@apollo/client'
 import { querySortingFilter, queryModalOpen } from './queries'
+require('dotenv').config()
 
-const uri = process.env.APOLLO_URI || 'http://localhost:5000'
+let uri = '/graphql'
+if (process.env.NODE_ENV === 'development') {
+  uri = 'http://localhost:5000/graphql'
+}
+console.log(uri)
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
