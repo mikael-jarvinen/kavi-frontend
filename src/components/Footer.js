@@ -13,8 +13,9 @@ const style = {
 const Footer = () => {
   return (
     <div style={style}>
-      We do not promote the use of alcohol, and we do not sell alcohol in any form
-      We are not affiliated with Alkostore24 (UG) or any commercial company
+      We do not promote the use of alcohol, and we do not sell alcohol in any form.
+      We are not affiliated with Alkostore24 (UG) or any commercial company.
+      By using this website you accept the use of essential cookies.
     </div>
   )
 }

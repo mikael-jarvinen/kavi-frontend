@@ -30,7 +30,7 @@ const ControlBar = () => {
         flexDirection='row' 
         className={classes.root}
       >
-        <Link to='/' variant='' ><img src={logo}/></Link>
+        <Link to='/' variant='' ><img src={logo} alt='Kavi-logo'/></Link>
         <Box flexGrow={1} className={classes.Box}>
           <LinkButton to='/beers'>Kaljat</LinkButton>
         </Box>

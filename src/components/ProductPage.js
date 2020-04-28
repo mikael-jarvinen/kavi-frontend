@@ -43,7 +43,7 @@ const ProductBox = ({ product }) => {
       <img 
         onClick={() => history.push(`${history.location.pathname}/${product.id}`)} 
         src={product.img} 
-        alt='product-image'
+        alt='product'
         style={{ cursor: 'pointer' }}
       />
       <GridListTileBar
