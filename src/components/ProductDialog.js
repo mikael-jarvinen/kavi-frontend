@@ -9,8 +9,6 @@ const ProductDialog = () => {
   const { id, category } = useParams()
   const [productId, setProductId] = useState(id)
   const history = useHistory()
-  
-  console.log(id)
 
   const close = () => {
     setProductId(null)
