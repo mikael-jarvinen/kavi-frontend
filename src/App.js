@@ -12,6 +12,7 @@ import {
 import ProductPage from './components/ProductPage'
 import ControlBar from './components/ControlBar'
 import Footer from './components/Footer'
+import MainPage from './components/MainPage'
 
 import {
   BrowserRouter as Router,
@@ -46,7 +47,7 @@ const App = () => {
           <ProductPage query={queryVeganWines} products='allVeganWines'/>
         </Route>
         <Route path='/'>
-          <div>WIP</div>
+          <MainPage />
         </Route>
       </Switch>
       <Footer />
