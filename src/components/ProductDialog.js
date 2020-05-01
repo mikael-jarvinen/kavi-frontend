@@ -6,13 +6,13 @@ import {
 import ProductDialogContent from './ProductDialogContent'
 
 const ProductDialog = () => {
-  const { id, category } = useParams()
+  const { id, category, products } = useParams()
   const [productId, setProductId] = useState(id)
   const history = useHistory()
 
   const close = () => {
     setProductId(null)
-    history.replace(`/${category}`)
+    history.replace(`/${products}/${category}`)
   }
 
   return (

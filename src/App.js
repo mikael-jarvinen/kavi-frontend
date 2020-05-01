@@ -6,7 +6,9 @@ import {
   queryEffervescents,
   queryBoxWines,
   queryWines,
-  queryVeganWines
+  queryVeganWines,
+  searchProducts,
+
 } from './queries'
 
 import ProductPage from './components/ProductPage'
@@ -25,26 +27,53 @@ const App = () => {
     <Router>
       <ControlBar />
       <Switch>
-        <Route path='/beers'>
-          <ProductPage query={queryBeers} products='allBeers'/>
+        <Route path='/products/beers'>
+          <ProductPage 
+            query={queryBeers} 
+            products='allBeers'
+          />
         </Route>
-        <Route path='/ciders'>
-          <ProductPage query={queryCiders} products='allCiders'/>
+        <Route path='/products/ciders'>
+          <ProductPage 
+            query={queryCiders} 
+            products='allCiders'
+          />
         </Route>
-        <Route path='/spirits'>
-          <ProductPage query={querySpirits} products='allSpirits'/>
+        <Route path='/products/spirits'>
+          <ProductPage 
+            query={querySpirits} 
+            products='allSpirits'
+          />
         </Route>
-        <Route path='/effervescents'>
-          <ProductPage query={queryEffervescents} products='allEffervescents'/>
+        <Route path='/products/effervescents'>
+          <ProductPage 
+            query={queryEffervescents} 
+            products='allEffervescents'
+          />
         </Route>
-        <Route path='/boxwines'>
-          <ProductPage query={queryBoxWines} products='allBoxWines'/>
+        <Route path='/products/boxwines'>
+          <ProductPage 
+            query={queryBoxWines} 
+            products='allBoxWines'
+          />
         </Route>
-        <Route path='/wines'>
-          <ProductPage query={queryWines} products='allWines'/>
+        <Route path='/products/wines'>
+          <ProductPage 
+            query={queryWines} 
+            products='allWines'
+          />
         </Route>
-        <Route path='/veganwines'>
-          <ProductPage query={queryVeganWines} products='allVeganWines'/>
+        <Route path='/products/veganwines'>
+          <ProductPage 
+            query={queryVeganWines} 
+            products='allVeganWines'
+          />
+        </Route>
+        <Route path='/search/:search'>
+          <ProductPage 
+            query={searchProducts} 
+            products='searchProducts'
+          />
         </Route>
         <Route path='/'>
           <MainPage />
