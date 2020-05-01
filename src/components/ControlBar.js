@@ -4,6 +4,7 @@ import { Box, Container } from '@material-ui/core'
 import logo from '../images/Kavi.png'
 import { Link } from 'react-router-dom'
 import LinkButton from './LinkButton'
+import SearchBar from './SearchBar'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -17,10 +18,20 @@ const useStyles = makeStyles(() => ({
   Box: {
     paddingTop: 20,
   },
+  search: {
+    margin: 10,
+    padding: 5,
+    backgroundColor: 'white',
+    borderRadius: 3
+  }
 }))
 
 const ControlBar = () => {
   const classes = useStyles()
+
+  const onSearch = value => {
+    console.log(value)
+  }
 
   return (
     <Container>
@@ -30,7 +41,9 @@ const ControlBar = () => {
         flexDirection='row' 
         className={classes.root}
       >
-        <Link to='/' variant='' ><img src={logo} alt='Kavi-logo'/></Link>
+        <Link to='/' variant='' >
+          <img src={logo} alt='Kavi-logo'/>
+        </Link>
         <Box flexGrow={1} className={classes.Box}>
           <LinkButton to='/beers'>Kaljat</LinkButton>
         </Box>
@@ -51,6 +64,9 @@ const ControlBar = () => {
         </Box>
         <Box flexGrow={1} className={classes.Box}>
           <LinkButton to='/veganwines'>Luomuviinit</LinkButton>
+        </Box>
+        <Box className={classes.search}>
+          <SearchBar onSearch={onSearch} placeholder='hae...' />
         </Box>
       </Box>
     </Container>
