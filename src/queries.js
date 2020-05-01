@@ -166,3 +166,19 @@ export const queryModalOpen = gql`
     modalOpen @client
   }
 `
+
+export const searchProducts = gql`
+query search($search: String!) {
+  searchProducts(search: $search) {
+    id
+    name
+    price
+    postage
+    volume
+    vol
+    KAVI
+    url
+    img
+  }
+}
+`

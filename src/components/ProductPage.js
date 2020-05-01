@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, useHistory }from 'react-router-dom'
+import { Route, useHistory, useParams }from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   GridListTile,
@@ -41,7 +41,7 @@ const ProductBox = ({ product }) => {
   return (
     <GridListTile className={classes.GridListTile}>
       <img 
-        onClick={() => history.push(`${history.location.pathname}/${product.id}`)} 
+        onClick={() => history.replace(`${history.location.pathname}/${product.id}`)} 
         src={product.img} 
         alt='product'
         style={{ cursor: 'pointer' }}
@@ -59,8 +59,17 @@ const ProductBox = ({ product }) => {
 }
 
 const ProductPage = ({ query, products }) => {
+  const { search } = useParams()
+  let variables = {}
+
+  if (search) {
+    variables = {
+      search
+    }
+  }
+
   const classes = useStyles()
-  const result = useQuery(query)
+  const result = useQuery(query, { variables })
   const { data } = useQuery(querySortingFilter)
 
   if (result.loading) {
@@ -86,7 +95,7 @@ const ProductPage = ({ query, products }) => {
       >
         {sortedProducts.map(p => <ProductBox key={p.id} product={p} />)}
       </GridList>
-      <Route path='/:category/:id'>
+      <Route path='/:products/:category/:id'>
         <ProductDialog />
       </Route>
     </Container>
