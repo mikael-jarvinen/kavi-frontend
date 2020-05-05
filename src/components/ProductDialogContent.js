@@ -10,6 +10,7 @@ import { useQuery } from '@apollo/client'
 import { getProduct } from '../queries'
 import ProductComment from './ProductComment'
 import CommentForm from './CommentForm'
+import TvlButton from './TvlButton'
 
 const useStyles = makeStyles(() => ({
   commentDiv: {
@@ -64,6 +65,7 @@ const ProductDialogContent = ({ id, close }) => {
           />
         </Box>
         <div style={{ padding: 30 }}>
+          <TvlButton product={product} />
           <Typography>Hinta {product.price}€</Typography>
           <Typography>Postit {product.postage}€</Typography>
           <Typography>Tilavuus {product.volume}L</Typography>

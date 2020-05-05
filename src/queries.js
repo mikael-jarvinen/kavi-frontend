@@ -21,6 +21,22 @@ mutation addComment($id: ID!, $author: String!, $message: String!) {
 }
 `
 
+export const addOrder = gql`
+mutation addOrder(
+  $author: String!, 
+  $product: String!, 
+  $price: String!, 
+  $postage: String!
+  ) {
+  addOrder(
+    author: $author,
+    product: $product,
+    price: $price,
+    postage: $postage
+  )
+}
+`
+
 export const getProduct = gql`
 query getProduct($idToSearch: ID!) {
   product(id: $idToSearch) {

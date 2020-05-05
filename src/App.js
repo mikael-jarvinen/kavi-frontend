@@ -21,6 +21,7 @@ import {
   Switch,
   Route,
 } from 'react-router-dom'
+import TvlRedirect from './components/TvlRedirect'
 
 const App = () => {
   return (
@@ -74,6 +75,9 @@ const App = () => {
             query={searchProducts} 
             products='searchProducts'
           />
+        </Route>
+        <Route path='/TVL/:author'>
+          <TvlRedirect />
         </Route>
         <Route path='/'>
           <MainPage />
