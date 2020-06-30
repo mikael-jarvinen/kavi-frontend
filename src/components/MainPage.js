@@ -53,7 +53,7 @@ const MainPage = () => {
             </Typography>
           </Box>
           <Box flexGrow={1} marginLeft={2} className={classes.box}>
-            <ReactPlayer url='https://www.youtube.com/watch?v=uypeEMD7RHw'/>
+            <ReactPlayer url='https://www.youtube.com/watch?v=mXVd3_ZM5wI'/>
           </Box>
         </Box>
       </Box>
