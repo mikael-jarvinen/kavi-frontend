@@ -7,8 +7,10 @@ import {
   SwipeableDrawer,
   List,
   ListSubheader,
-  Divider
+  Divider,
+  IconButton
 } from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
 import logo from '../images/Kavi.png'
 import { Link } from 'react-router-dom'
 import LinkButton from './LinkButton'
@@ -114,6 +116,12 @@ const ControlBar = () => {
             </List>
           </Box>
         </SwipeableDrawer>
+          : null}
+        {matches ? <Box display='flex' color='white' alignItems='center'>
+          <IconButton onClick={() => setDrawer(true)} color='inherit'>
+            <MenuIcon/>
+          </IconButton>
+        </Box>
           : null}
       </Box>
     </Container>
