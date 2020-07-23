@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextField } from '@material-ui/core'
+import { TextField, Box } from '@material-ui/core'
 import { Form, asField } from 'informed'
 
 const CustomText = asField(({ fieldState, fieldApi, ...props }) => {
@@ -25,6 +25,7 @@ const CustomText = asField(({ fieldState, fieldApi, ...props }) => {
             onBlur(e)
           }
         }}
+        fullWidth
       />
     </React.Fragment>
   )
@@ -32,9 +33,11 @@ const CustomText = asField(({ fieldState, fieldApi, ...props }) => {
 
 const SearchBar = ({ onSearch, placeholder }) => {
   return (
-    <Form onSubmit={values => onSearch(values.search)}>
-      <CustomText field={'search'} placeholder={placeholder}/>
-    </Form>
+    <Box flexGrow={1}>
+      <Form onSubmit={values => onSearch(values.search)}>
+        <CustomText field={'search'} placeholder={placeholder}/>
+      </Form>
+    </Box>
   )
 }
 

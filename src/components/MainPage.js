@@ -2,9 +2,10 @@ import React from 'react'
 import {
   Container,
   Box,
-  Typography
+  Typography,
+  useMediaQuery
 } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { fade } from '@material-ui/core/styles/colorManipulator'
 import ReactPlayer from 'react-player'
 
@@ -32,6 +33,9 @@ const useStyles = makeStyles(() => ({
 
 const MainPage = () => {
   const classes = useStyles()
+  const theme = useTheme()
+
+  const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <Container>
@@ -41,8 +45,13 @@ const MainPage = () => {
             Kaikki yhden ja yksi kaikkien kaljojen puolesta
           </Typography>
         </Box>
-        <Box display='flex' flexGrow={1} className={classes.container}>
-          <Box flexGrow={1} marginRight={2} className={classes.box}>
+        <Box
+          display='flex'
+          flexGrow={1}
+          className={classes.container}
+          flexWrap={matches ? 'wrap' : 'nowrap'}
+        >
+          <Box flexGrow={1} margin={1} className={classes.box}>
             <Typography variant='h5'>
               KAVIndex kuvaa alkoholituotteen viinallisuutta.
               Tuotteen viinallisuus on suure, joka kuvaa alkoholin
@@ -52,8 +61,18 @@ const MainPage = () => {
               indeksiksi 10
             </Typography>
           </Box>
-          <Box flexGrow={1} marginLeft={2} className={classes.box}>
-            <ReactPlayer url='https://www.youtube.com/watch?v=mXVd3_ZM5wI'/>
+          <Box
+            flexGrow={1}
+            margin={1}
+            className={classes.box}
+            display='flex'
+            justifyContent='center'
+            minWidth='50%'
+          >
+            <ReactPlayer
+              url='https://www.youtube.com/watch?v=mXVd3_ZM5wI'
+              width={'100%'}
+            />
           </Box>
         </Box>
       </Box>
