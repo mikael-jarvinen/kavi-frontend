@@ -17,7 +17,8 @@ const TvlButton = ({ product }) => {
         author: window.localStorage.getItem('TVLauthor'),
         product: product.name,
         price: product.price,
-        postage: product.postage
+        postage: product.postage,
+        url: product.url
       }
     })
   }
